@@ -7,7 +7,10 @@
  * Classe do banco Caixa Econômica Federal que integra com webservice
  *
  */
-include_once 'XmlDomConstruct.php';
+
+namespace WSCaixa;
+
+require_once 'XmlDomConstruct.php';
 
 class WSCaixa
 {
