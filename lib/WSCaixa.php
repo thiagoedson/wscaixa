@@ -9,7 +9,7 @@
  */
 include_once 'XmlDomConstruct.php';
 
-class Caixa
+class WSCaixa
 {
     /**
      * @var string

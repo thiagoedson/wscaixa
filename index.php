@@ -8,12 +8,12 @@
  *
  */
 
-require_once 'src/Dados.php';
-require_once 'lib/Caixa.php';
+require_once 'src/DadosWS.php';
+require_once 'lib/WSCaixa.php';
 
 try {
 
-	$integracao = new Caixa( (array) new Dados() );
+	$integracao = new WSCaixa( (array) new DadosWS() );
 
 	$integracao->realizarRegistro();
 
