@@ -5,11 +5,15 @@
  * Version: 2.0
  *
  * Arquivo inicial que tem a função de importar as classes usadas e realizar uma chamada
+ * TESTE
  *
  */
 
 require_once 'src/DadosWS.php';
 require_once 'lib/WSCaixa.php';
+
+use WSCaixa\WSCaixa;
+use DadosWS\DadosWS;
 
 try {
 
