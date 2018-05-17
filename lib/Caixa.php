@@ -176,7 +176,6 @@ class Caixa
         $this->_geraEstruturaXml($arrayDados);
     }
 
-
     /**
      * Realiza a geração do hash codificado para integração com a CAIXA - CEF
      *

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2aebe220-90b0-4524-998f-aa7b1f92b6c3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Thiago_Edson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Thiago_Edson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Caixa.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Caixa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/XmlDomConstruct.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/XmlDomConstruct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dados.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +27,52 @@
       <file leaf-file-name="Caixa.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/Caixa.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="15" />
+            <state relative-caret-position="425">
+              <caret line="239" column="2" lean-forward="true" selection-start-line="239" selection-start-column="2" selection-end-line="239" selection-end-column="2" />
+              <folding>
+                <element signature="e#6#144#0#PHP" />
+                <element signature="e#201#231#0#PHP" />
+                <element signature="e#270#309#0#PHP" />
+                <element signature="n#__construct#0;n#Caixa#0;n#!!top" />
+                <element signature="e#476#586#0#PHP" />
+                <element signature="n#realizarRegistro#0;n#Caixa#0;n#!!top" />
+                <element signature="e#641#2111#0#PHP" />
+                <element signature="e#1046#1205#0#PHP" />
+                <element signature="e#1089#1204#0#PHP" />
+                <element signature="e#1348#1453#0#PHP" />
+                <element signature="e#1580#1687#0#PHP" />
+                <element signature="e#2013#2111#0#PHP" />
+                <element signature="e#2121#2242#0#PHP" />
+                <element signature="e#2252#2492#0#PHP" />
+                <element signature="e#2400#2492#0#PHP" />
+                <element signature="e#2504#2672#0#PHP" />
+                <element signature="n#_setConfigs#0;n#Caixa#0;n#!!top" />
+                <element signature="e#2819#2894#0#PHP" />
+                <element signature="e#2904#3306#0#PHP" />
+                <element signature="e#2948#3240#0#PHP" />
+                <element signature="e#3023#3225#0#PHP" />
+                <element signature="e#3064#3207#1#PHP" />
+                <element signature="e#3251#3306#0#PHP" />
+                <element signature="e#3334#3637#0#PHP" />
+                <element signature="e#3734#6379#0#PHP" />
+                <element signature="e#3771#6369#1#PHP" />
+                <element signature="e#3842#6355#1#PHP" />
+                <element signature="e#3892#4394#1#PHP" />
+                <element signature="e#4427#6337#1#PHP" />
+                <element signature="e#4477#6315#1#PHP" />
+                <element signature="e#4608#6289#1#PHP" />
+                <element signature="e#5305#5551#1#PHP" />
+                <element signature="e#5664#5821#1#PHP" />
+                <element signature="e#5991#6259#0#PHP" />
+                <element signature="e#6440#7214#0#PHP" />
+                <element signature="n#_geraHashAutenticacao#0;n#Caixa#0;n#!!top" />
+                <element signature="e#7313#7560#0#PHP" />
+                <element signature="e#7860#8052#0#PHP" />
+                <element signature="n#_geraEstruturaXml#0;n#Caixa#0;n#!!top" />
+                <element signature="e#8433#8557#0#PHP" />
+                <element signature="e#8567#8738#0#PHP" />
+                <element signature="e#8748#8859#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,13 +86,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dados.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dados.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Dados.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
-                <element signature="e#6#409#0#PHP" expanded="true" />
+                <element signature="e#6#163#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,9 +124,10 @@
       <list>
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/lib/Caixa.php" />
         <option value="$PROJECT_DIR$/lib/XmlDomConstruct.php" />
         <option value="$PROJECT_DIR$/src/Dados.php" />
+        <option value="$PROJECT_DIR$/lib/Caixa.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -86,9 +138,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
+    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -159,23 +209,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526557861161</updated>
-      <workItem from="1526557862537" duration="1006000" />
+      <workItem from="1526557862537" duration="1710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1006000" />
+    <option name="totallyTimeSpent" value="1710000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32928178" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32928178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32928178" />
       <window_info anchor="right" id="Database" />
@@ -197,25 +248,16 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Caixa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -226,12 +268,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Caixa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="239" column="2" lean-forward="true" selection-start-line="239" selection-start-column="2" selection-end-line="239" selection-end-column="2" />
+          <folding>
+            <element signature="e#6#144#0#PHP" />
+            <element signature="e#201#231#0#PHP" />
+            <element signature="e#270#309#0#PHP" />
+            <element signature="n#__construct#0;n#Caixa#0;n#!!top" />
+            <element signature="e#476#586#0#PHP" />
+            <element signature="n#realizarRegistro#0;n#Caixa#0;n#!!top" />
+            <element signature="e#641#2111#0#PHP" />
+            <element signature="e#1046#1205#0#PHP" />
+            <element signature="e#1089#1204#0#PHP" />
+            <element signature="e#1348#1453#0#PHP" />
+            <element signature="e#1580#1687#0#PHP" />
+            <element signature="e#2013#2111#0#PHP" />
+            <element signature="e#2121#2242#0#PHP" />
+            <element signature="e#2252#2492#0#PHP" />
+            <element signature="e#2400#2492#0#PHP" />
+            <element signature="e#2504#2672#0#PHP" />
+            <element signature="n#_setConfigs#0;n#Caixa#0;n#!!top" />
+            <element signature="e#2819#2894#0#PHP" />
+            <element signature="e#2904#3306#0#PHP" />
+            <element signature="e#2948#3240#0#PHP" />
+            <element signature="e#3023#3225#0#PHP" />
+            <element signature="e#3064#3207#1#PHP" />
+            <element signature="e#3251#3306#0#PHP" />
+            <element signature="e#3334#3637#0#PHP" />
+            <element signature="e#3734#6379#0#PHP" />
+            <element signature="e#3771#6369#1#PHP" />
+            <element signature="e#3842#6355#1#PHP" />
+            <element signature="e#3892#4394#1#PHP" />
+            <element signature="e#4427#6337#1#PHP" />
+            <element signature="e#4477#6315#1#PHP" />
+            <element signature="e#4608#6289#1#PHP" />
+            <element signature="e#5305#5551#1#PHP" />
+            <element signature="e#5664#5821#1#PHP" />
+            <element signature="e#5991#6259#0#PHP" />
+            <element signature="e#6440#7214#0#PHP" />
+            <element signature="n#_geraHashAutenticacao#0;n#Caixa#0;n#!!top" />
+            <element signature="e#7313#7560#0#PHP" />
+            <element signature="e#7860#8052#0#PHP" />
+            <element signature="n#_geraEstruturaXml#0;n#Caixa#0;n#!!top" />
+            <element signature="e#8433#8557#0#PHP" />
+            <element signature="e#8567#8738#0#PHP" />
+            <element signature="e#8748#8859#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Dados.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="26" column="37" lean-forward="true" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
-            <element signature="e#6#409#0#PHP" expanded="true" />
+            <element signature="e#6#163#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
