@@ -1,8 +1,8 @@
 <?php
 /**
- * User: Wagner Mengue
- * Date: 01/2018
- * Version: 1.0
+ * User: Thiago Edson
+ * Date: 05/2018
+ * Version: 2.0
  *
  * Classe simplificada para preenchimento dos dados para testes do webservice
  *
