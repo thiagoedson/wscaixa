@@ -28,13 +28,15 @@ class DadosWS {
 	public $codigoTitulo = '';
 	public $dataEmissao = '2018-05-16';
 
-	public $dataJuros = '2018-05-16';
-	public $juros = '0.0';
+	public $dataJuros = '0000-00-00';
+	public $juros = '0.00';
 
-	public $dataMulta = '2018-05-16';
+	public $dataMulta = '0000-00-00';
 	public $multa = '0.00';
 
 	public $numeroAgencia = '';
+
+	public $mensagem =  '';
 
 
 	/**
@@ -42,7 +44,7 @@ class DadosWS {
 	 **/
 	public $infoPagador = array(
 		'CPF'      => '',
-		'NOME'     => 'THIAGO EDSON',
+		'NOME'     => 'FULANO',
 		'ENDERECO' => array(
 			'LOGRADOURO' => '',
 			'BAIRRO'     => '',

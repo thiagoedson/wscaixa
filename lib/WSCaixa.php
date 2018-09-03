@@ -9,13 +9,13 @@
  */
 
 namespace WSCaixa;
+
 use DOMDocument;
 use DOMElement;
 use SimpleXMLElement;
 
 
-class WSCaixa
-{
+class WSCaixa {
 	/**
 	 * @var string
 	 */
@@ -26,9 +26,8 @@ class WSCaixa
 	 */
 	private $dadosXml;
 
-	public function __construct($informacoes, $arrDescontos = null, $tipo = 'INCLUI_BOLETO')
-	{
-		$this->_setConfigs($informacoes, $arrDescontos, $tipo);
+	public function __construct( $informacoes, $arrDescontos = null, $tipo = 'INCLUI_BOLETO' ) {
+		$this->_setConfigs( $informacoes, $arrDescontos, $tipo );
 	}
 
 	/**
@@ -36,131 +35,129 @@ class WSCaixa
 	 *
 	 * @throws Exception
 	 */
-	public function realizarRegistro($debug = false, $xml = false)
-	{
+	public function realizarRegistro( $debug = false, $xml = false ) {
 
 		try {
-			$connCURL = curl_init($this->urlIntegracao);
-			curl_setopt($connCURL, CURLOPT_POSTFIELDS, $this->dadosXml);
-			curl_setopt($connCURL, CURLOPT_POST, true);
-			curl_setopt($connCURL, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($connCURL, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($connCURL, CURLOPT_SSL_VERIFYHOST, false);
+			$connCURL = curl_init( $this->urlIntegracao );
+			curl_setopt( $connCURL, CURLOPT_POSTFIELDS, $this->dadosXml );
+			curl_setopt( $connCURL, CURLOPT_POST, true );
+			curl_setopt( $connCURL, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, false );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, false );
 
-			curl_setopt($connCURL, CURLOPT_HTTPHEADER, array(
+			curl_setopt( $connCURL, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/xml',
 				'SOAPAction: "INCLUI_BOLETO"'
-			));
+			) );
 
-			$responseCURL = curl_exec($connCURL);
-			$err = curl_error($connCURL);
-			curl_close($connCURL);
+			$responseCURL = curl_exec( $connCURL );
+			$err          = curl_error( $connCURL );
+			curl_close( $connCURL );
 
-			if ($err) {
+			if ( $err ) {
 
-				print_r(json_encode($err));
+				print_r( json_encode( $err ) );
 				die;
 			}
 
-			$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL);
-			$xml = new SimpleXMLElement($response);
-			$xmlArray = json_decode(json_encode((array)$xml), TRUE);
+			$response  = preg_replace( "/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL );
+			$xml       = new SimpleXMLElement( $response );
+			$xmlArray  = json_decode( json_encode( (array) $xml ), true );
 			$infoArray = $xmlArray['soapenvBody']['manutencaocobrancabancariaSERVICO_SAIDA']['DADOS'];
 
 			/**
-			Adicionar array com a XML usada na requisição ao ws "auditoria_webservice"
+			 * Adicionar array com a XML usada na requisição ao ws "auditoria_webservice"
 			 *
 			 **/
 
-			if($xml) {
-				$infoArray['XML']['REQUEST'] = $this->dadosXml;
+			if ( $xml ) {
+				$infoArray['XML']['REQUEST']  = $this->dadosXml;
 				$infoArray['XML']['RESPONSE'] = $responseCURL;
 			}
 
 			return $infoArray;
 
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage(), $e->getCode());
+		} catch ( Exception $e ) {
+			throw new Exception( $e->getMessage(), $e->getCode() );
 		}
 
-		if (isset($infoArray['EXCECAO'])) {
+		if ( isset( $infoArray['EXCECAO'] ) ) {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		}
 
-		if ($infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00') {
+		if ( $infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00' ) {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		} else {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		}
 	}
 
 
-	public function consultarRegistro($debug = false, $xml = false)
-	{
+	public function consultarRegistro( $debug = false, $xml = false ) {
 
 		try {
-			$connCURL = curl_init($this->urlIntegracao);
-			curl_setopt($connCURL, CURLOPT_POSTFIELDS, $this->dadosXml);
-			curl_setopt($connCURL, CURLOPT_POST, true);
-			curl_setopt($connCURL, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($connCURL, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($connCURL, CURLOPT_SSL_VERIFYHOST, false);
+			$connCURL = curl_init( $this->urlIntegracao );
+			curl_setopt( $connCURL, CURLOPT_POSTFIELDS, $this->dadosXml );
+			curl_setopt( $connCURL, CURLOPT_POST, true );
+			curl_setopt( $connCURL, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, false );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, false );
 
-			curl_setopt($connCURL, CURLOPT_HTTPHEADER, array(
+			curl_setopt( $connCURL, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/xml',
 				'SOAPAction: "CONSULTA_BOLETO"'
-			));
+			) );
 
-			$responseCURL = curl_exec($connCURL);
-			$err = curl_error($connCURL);
-			curl_close($connCURL);
+			$responseCURL = curl_exec( $connCURL );
+			$err          = curl_error( $connCURL );
+			curl_close( $connCURL );
 
-			if ($err) {
+			if ( $err ) {
 
-				print_r(json_encode($err));
+				print_r( json_encode( $err ) );
 				die;
 			}
 
-			$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL);
-			$xml = new SimpleXMLElement($response);
-			$xmlArray = json_decode(json_encode((array)$xml), TRUE);
+			$response  = preg_replace( "/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL );
+			$xml       = new SimpleXMLElement( $response );
+			$xmlArray  = json_decode( json_encode( (array) $xml ), true );
 			$infoArray = $xmlArray['soapenvBody']['manutencaocobrancabancariaSERVICO_SAIDA']['DADOS'];
 
 			/**
-			Adicionar array com a XML usada na requisição ao ws "auditoria_webservice"
+			 * Adicionar array com a XML usada na requisição ao ws "auditoria_webservice"
 			 *
 			 **/
 
-			if($xml) {
-				$infoArray['XML']['REQUEST'] = $this->dadosXml;
+			if ( $xml ) {
+				$infoArray['XML']['REQUEST']  = $this->dadosXml;
 				$infoArray['XML']['RESPONSE'] = $responseCURL;
 			}
 
 			return $infoArray;
 
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage(), $e->getCode());
+		} catch ( Exception $e ) {
+			throw new Exception( $e->getMessage(), $e->getCode() );
 		}
 
-		if (isset($infoArray['EXCECAO'])) {
+		if ( isset( $infoArray['EXCECAO'] ) ) {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		}
 
-		if ($infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00') {
+		if ( $infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00' ) {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		} else {
 
-			print_r(json_encode($infoArray));
+			print_r( json_encode( $infoArray ) );
 			die;
 		}
 	}
@@ -171,19 +168,18 @@ class WSCaixa
 	 * @param $informacoes
 	 * @param null $arrDescontos
 	 */
-	private function _setConfigs($informacoes, $arrDescontos = null,  $tipo = 'INCLUI_BOLETO')
-	{
+	private function _setConfigs( $informacoes, $arrDescontos = null, $tipo = 'INCLUI_BOLETO' ) {
 		$this->urlIntegracao = $informacoes['urlIntegracao'];
 
-		if ($arrDescontos == null) {
+		if ( $arrDescontos == null ) {
 			$arrDescontos = array();
 		}
 
-		if (count($arrDescontos) > 0) {
-			foreach ($arrDescontos as $desconto) {
+		if ( count( $arrDescontos ) > 0 ) {
+			foreach ( $arrDescontos as $desconto ) {
 				$descontosCaixa[] = array(
 					'DESCONTO' => array(
-						'DATA' => $desconto['dataValidade'],
+						'DATA'  => $desconto['dataValidade'],
 						'VALOR' => $desconto['valor']
 					)
 				);
@@ -193,16 +189,16 @@ class WSCaixa
 		}
 
 		$arrayDadosHash = array(
-			'codigoCedente' => $informacoes['codigoCedente'],
-			'nossoNumero' => $informacoes['nossoNumero'],
+			'codigoCedente'  => $informacoes['codigoCedente'],
+			'nossoNumero'    => $informacoes['nossoNumero'],
 			'dataVencimento' => $informacoes['dataVencimento'],
-			'valorNominal' => $informacoes['valorNominal'],
-			'cnpj' => $informacoes['cnpj']
+			'valorNominal'   => $informacoes['valorNominal'],
+			'cnpj'           => $informacoes['cnpj']
 		);
 
-		$autenticacao = $this->_geraHashAutenticacao($arrayDadosHash, $tipo);
+		$autenticacao = $this->_geraHashAutenticacao( $arrayDadosHash, $tipo );
 
-		if($tipo == 'CONSULTA_BOLETO') {
+		if ( $tipo == 'CONSULTA_BOLETO' ) {
 			$arrayDados = array(
 				'soapenv:Body' => array(
 					'consultacobrancabancaria:SERVICO_ENTRADA' => array(
@@ -218,7 +214,7 @@ class WSCaixa
 						'DADOS'             => array(
 							$tipo => array(
 								'CODIGO_BENEFICIARIO' => $informacoes['codigoCedente'],
-									'NOSSO_NUMERO'     => $informacoes['nossoNumero'],
+								'NOSSO_NUMERO'        => $informacoes['nossoNumero'],
 
 
 							)
@@ -226,8 +222,7 @@ class WSCaixa
 					)
 				)
 			);
-		}
-		else {
+		} else {
 			$arrayDados = array(
 				'soapenv:Body' => array(
 					'manutencaocobrancabancaria:SERVICO_ENTRADA' => array(
@@ -244,34 +239,39 @@ class WSCaixa
 							$tipo => array(
 								'CODIGO_BENEFICIARIO' => $informacoes['codigoCedente'],
 								'TITULO'              => array(
-									'NOSSO_NUMERO'     => $informacoes['nossoNumero'],
-									'NUMERO_DOCUMENTO' => $informacoes['codigoTitulo'],
+									'NOSSO_NUMERO'      => $informacoes['nossoNumero'],
+									'NUMERO_DOCUMENTO'  => $informacoes['codigoTitulo'],
 									//código interdo do boleto/título
-									'DATA_VENCIMENTO'  => $informacoes['dataVencimento'],
-									'VALOR'            => $informacoes['valorNominal'],
-									'TIPO_ESPECIE'     => '99',
+									'DATA_VENCIMENTO'   => $informacoes['dataVencimento'],
+									'VALOR'             => $informacoes['valorNominal'],
+									'TIPO_ESPECIE'      => '99',
 									// Olhar no manual qual enviar
-									'FLAG_ACEITE'      => 'S',
+									'FLAG_ACEITE'       => 'S',
 									// S-Aceite | N-Não aceite (reconhecimento de dívida pelo pagador)
-									'DATA_EMISSAO'     => $informacoes['dataEmissao'],
-									'JUROS_MORA'       => array(
-										'TIPO'       => 'ISENTO',
-										//'DATA' => $informacoes['dataJuros'],
-										'PERCENTUAL' => $informacoes['juros'],
+									'DATA_EMISSAO'      => $informacoes['dataEmissao'],
+									'JUROS_MORA'        => array(
+										'TIPO'  => 'ISENTO',
+										'VALOR' => $informacoes['juros'],
+										/*'DATA'       => $informacoes['dataJuros'],*/
+										/*'PERCENTUAL' => $informacoes['juros'],*/
+
 									),
-									'VALOR_ABATIMENTO' => '0',
-									'POS_VENCIMENTO'   => array(
+									'VALOR_ABATIMENTO'  => '0',
+									'POS_VENCIMENTO'    => array(
 										'ACAO'        => 'DEVOLVER',
 										'NUMERO_DIAS' => '90',
 									),
-									'CODIGO_MOEDA'     => '09',
+									'CODIGO_MOEDA'      => '09',
 									//Real
-									'PAGADOR'          => $informacoes['infoPagador'],
+									'PAGADOR'           => $informacoes['infoPagador'],
 									/* 'MULTA' => array(
 										 'DATA' => $informacoes['dataMulta'],
 										 'PERCENTUAL' => $informacoes['multa'],
 									 ),
 									 'DESCONTOS' => $descontosCaixa*/
+									'FICHA_COMPENSACAO' => [
+										'MENSAGENS' => [ 'MENSAGEM' => $informacoes['mensagem'] ],
+									]
 								)
 							)
 						)
@@ -280,7 +280,7 @@ class WSCaixa
 			);
 		}
 
-		$this->_geraEstruturaXml($arrayDados, $tipo);
+		$this->_geraEstruturaXml( $arrayDados, $tipo );
 	}
 
 	/**
@@ -300,12 +300,12 @@ class WSCaixa
 	 * MYS8MvnenMdBCqZOIqw357uYIi/WoDmr8fx+c5YREXs=
 	 *
 	 * @param array $arrayDadosHash
+	 *
 	 * @return string
 	 */
-	private function _geraHashAutenticacao(array $arrayDadosHash, $tipo)
-	{
+	private function _geraHashAutenticacao( array $arrayDadosHash, $tipo ) {
 
-		if($tipo <> 'CONSULTA_BOLETO') {
+		if ( $tipo <> 'CONSULTA_BOLETO' ) {
 
 			$numeroParaHash = preg_replace( '/[^A-Za-z0-9]/', '',
 					str_pad( $arrayDadosHash['codigoCedente'], 7, '0', STR_PAD_LEFT ) .
@@ -313,7 +313,7 @@ class WSCaixa
 					strftime( '%d%m%Y', strtotime( $arrayDadosHash['dataVencimento'] ) ) ) .
 			                  str_pad( preg_replace( '/[^0-9]/', '', $arrayDadosHash['valorNominal'] ), 15, '0', STR_PAD_LEFT ) .
 			                  str_pad( $arrayDadosHash['cnpj'], 14, '0', STR_PAD_LEFT );
-		}else {
+		} else {
 			$numeroParaHash = preg_replace( '/[^A-Za-z0-9]/', '',
 					str_pad( $arrayDadosHash['codigoCedente'], 7, '0', STR_PAD_LEFT ) .
 					$arrayDadosHash['nossoNumero'] .
@@ -322,7 +322,8 @@ class WSCaixa
 			                  str_pad( $arrayDadosHash['cnpj'], 14, '0', STR_PAD_LEFT );
 		}
 
-		$autenticacao = base64_encode(hash('sha256', $numeroParaHash, true));
+		$autenticacao = base64_encode( hash( 'sha256', $numeroParaHash, true ) );
+
 		return $autenticacao;
 	}
 
@@ -332,25 +333,24 @@ class WSCaixa
 	 *
 	 * @param array $arrayDados
 	 */
-	private function _geraEstruturaXml(array $arrayDados, $tipo)
-	{
-		$xml_root = 'soapenv:Envelope';
-		$xml = new XmlDomConstruct('1.0', 'utf-8');
+	private function _geraEstruturaXml( array $arrayDados, $tipo ) {
+		$xml_root                = 'soapenv:Envelope';
+		$xml                     = new XmlDomConstruct( '1.0', 'utf-8' );
 		$xml->preserveWhiteSpace = false;
-		$xml->formatOutput = true;
-		$xml->convertArrayToXml(array($xml_root => $arrayDados));
-		$xml_root_item = $xml->getElementsByTagName($xml_root)->item(0);
+		$xml->formatOutput       = true;
+		$xml->convertArrayToXml( array( $xml_root => $arrayDados ) );
+		$xml_root_item = $xml->getElementsByTagName( $xml_root )->item( 0 );
 		$xml_root_item->setAttribute(
 			'xmlns:soapenv',
 			'http://schemas.xmlsoap.org/soap/envelope/'
 		);
 
-		if($tipo == 'CONSULTA_BOLETO'){
+		if ( $tipo == 'CONSULTA_BOLETO' ) {
 			$xml_root_item->setAttribute(
 				'xmlns:consultacobrancabancaria',
 				'http://caixa.gov.br/sibar/consulta_cobranca_bancaria/boleto'
 			);
-		}else {
+		} else {
 			$xml_root_item->setAttribute(
 				'xmlns:manutencaocobrancabancaria',
 				'http://caixa.gov.br/sibar/manutencao_cobranca_bancaria/boleto/externo'
@@ -377,29 +377,28 @@ class WSCaixa
  */
 class XmlDomConstruct extends DOMDocument {
 
-	public function convertArrayToXml($mixed, DOMElement $domElement = null) {
+	public function convertArrayToXml( $mixed, DOMElement $domElement = null ) {
 
-		$domElement = is_null($domElement) ? $this : $domElement;
+		$domElement = is_null( $domElement ) ? $this : $domElement;
 
-		if (is_array($mixed)) {
-			foreach( $mixed as $index => $mixedElement ) {
+		if ( is_array( $mixed ) ) {
+			foreach ( $mixed as $index => $mixedElement ) {
 				//Para não enviar a tag DESCONTOS quanto não houver
-				if($index == 'DESCONTOS'){
-					if(count($mixed[$index])==0){
+				if ( $index == 'DESCONTOS' ) {
+					if ( count( $mixed[ $index ] ) == 0 ) {
 						continue;
 					}
 				}
-				if ( is_int($index) ) {
+				if ( is_int( $index ) ) {
 					$node = $domElement;
+				} else {
+					$node = $this->createElement( $index );
+					$domElement->appendChild( $node );
 				}
-				else {
-					$node = $this->createElement($index);
-					$domElement->appendChild($node);
-				}
-				$this->convertArrayToXml($mixedElement, $node);
+				$this->convertArrayToXml( $mixedElement, $node );
 			}
 		} else {
-			$domElement->appendChild($this->createTextNode($mixed));
+			$domElement->appendChild( $this->createTextNode( $mixed ) );
 		}
 	}
 }
