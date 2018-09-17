@@ -36,15 +36,15 @@ class DadosWS {
 
 	public $numeroAgencia = '';
 
-	public $mensagem =  '';
+	public $mensagem = '';
 
 
 	/**
-	 * Caso o pagador seja uma pessoa fisica
+	 * Caso o pagador seja uma pessoa fisica CPF
 	 **/
 	public $infoPagador = array(
 		'CPF'      => '',
-		'NOME'     => 'FULANO',
+		'NOME'     => '',
 		'ENDERECO' => array(
 			'LOGRADOURO' => '',
 			'BAIRRO'     => '',
@@ -55,19 +55,19 @@ class DadosWS {
 	);
 
 	/**
-	 * Caso o pagador seja uma empresa
+	 * Caso o pagador seja uma empresa CNPJ
 	 **/
 
-	/*    public $infoPagador = array(
-			'CNPJ' => '',
-			'RAZAO_SOCIAL' => '',
-			'ENDERECO' => array(
-				'LOGRADOURO' => '',
-				'BAIRRO' => '',
-				'CIDADE' => '',
-				'UF' => '',
-				'CEP' => ''
-			)
-		);*/
+	public $infoPagadorCNPJ = array(
+		'CNPJ'         => '',
+		'RAZAO_SOCIAL' => '',
+		'ENDERECO'     => array(
+			'LOGRADOURO' => '',
+			'BAIRRO'     => '',
+			'CIDADE'     => '',
+			'UF'         => '',
+			'CEP'        => ''
+		)
+	);
 
 }
