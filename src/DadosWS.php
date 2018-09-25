@@ -16,8 +16,8 @@ namespace DadosWS;
 
 class DadosWS {
 
-	public $urlIntegracao = 'https://des.barramento.caixa.gov.br/sibar/ManutencaoCobrancaBancaria/Boleto/Externo';
-	//public $urlIntegracao = 'https://barramento.caixa.gov.br/sibar/ManutencaoCobrancaBancaria/Boleto/Externo';
+	//public $urlIntegracao = 'https://des.barramento.caixa.gov.br/sibar/ManutencaoCobrancaBancaria/Boleto/Externo'; //--Homologação
+	public $urlIntegracao = 'https://barramento.caixa.gov.br/sibar/ManutencaoCobrancaBancaria/Boleto/Externo'; //--Produção
 	public $codigoCedente = ''; //cedente ou beneficiário
 	public $codigoCedente2 = ''; //cedente ou beneficiário
 	//public $codigoCedente = '5296377'; //cedente ou beneficiário
@@ -37,6 +37,7 @@ class DadosWS {
 	public $numeroAgencia = '';
 
 	public $mensagem = '';
+	public $mensagem2 = '';
 
 
 	/**
