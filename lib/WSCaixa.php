@@ -270,7 +270,11 @@ class WSCaixa {
 									 ),
 									 'DESCONTOS' => $descontosCaixa*/
 									'FICHA_COMPENSACAO' => [
-										'MENSAGENS' => [ 'MENSAGEM' => $informacoes['mensagem'], 'MENSAGEM' => $informacoes['mensagem2'] ],
+										'MENSAGENS' => [
+											'MENSAGEM' => [
+												$informacoes['mensagem']
+											]
+										]
 									]
 								)
 							)
@@ -332,7 +336,6 @@ class WSCaixa {
 	 * será armazenado em $this->dadosXml para envio posterior
 	 *
 	 * @param array $arrayDados
-	 * @param string $tipo
 	 */
 	private function _geraEstruturaXml( array $arrayDados, $tipo ) {
 		$xml_root                = 'soapenv:Envelope';
