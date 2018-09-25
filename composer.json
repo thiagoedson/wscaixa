@@ -2,7 +2,7 @@
   "name": "cassone200/wscaixa",
   "description": "Script para integração com a caixa economica , para criação e gestão de boletos registrados.",
   "type": "project",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "license": "ISC",
   "author":  {
     "name": "Thiago Edson",

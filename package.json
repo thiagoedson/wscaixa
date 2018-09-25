@@ -1,6 +1,6 @@
 {
   "name": "wscaixa",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Script baseado no código do https://github.com/wagnermengue \r alterado para  integração com a caixa economica , para criação e gestão de boletos registrados , e outras soluções para minha necessidade uso interno.",
   "main": "index.js",
   "directories": {
