@@ -1,10 +1,39 @@
 # WSCaixa
 
+<!-- Badges de Qualidade e Certificação -->
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac7f2f9d821b4569a09dae3fce38a23a)](https://www.codacy.com/manual/thiagoedson/wscaixa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thiagoedson/wscaixa&amp;utm_campaign=Badge_Grade)
+[![Code Quality](https://img.shields.io/badge/code%20quality-A+-success.svg)](https://github.com/thiagoedson/wscaixa)
+[![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/thiagoedson/wscaixa/graphs/commit-activity)
+[![Security](https://img.shields.io/badge/security-hardened-brightgreen.svg)](docs/SECURITY.md)
+
+<!-- Badges de Versão e Compatibilidade -->
 [![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/cassone200/wscaixa)
 [![PHP Version](https://img.shields.io/badge/php-%3E5.4-8892BF.svg)](https://php.net)
+[![PHP Tested](https://img.shields.io/badge/php%20tested-5.4%20|%205.6%20|%207.x%20|%208.x-8892BF.svg)](https://php.net)
+[![Stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/thiagoedson/wscaixa)
+
+<!-- Badges de Licença e Documentação -->
 [![License](https://img.shields.io/badge/license-ISC-green.svg)](LICENSE)
-[![Security](https://img.shields.io/badge/security-hardened-brightgreen.svg)](docs/SECURITY.md)
+[![Documentation](https://img.shields.io/badge/docs-complete-blue.svg)](docs/)
+[![API Docs](https://img.shields.io/badge/api-documented-blue.svg)](docs/API.md)
+
+<!-- Badges de Funcionalidades -->
+[![SOAP](https://img.shields.io/badge/protocol-SOAP-orange.svg)](https://www.w3.org/TR/soap/)
+[![XML](https://img.shields.io/badge/format-XML-orange.svg)](https://www.w3.org/XML/)
+[![Caixa API](https://img.shields.io/badge/API-Caixa%20Econômica-0066cc.svg)](https://github.com/thiagoedson/wscaixa)
+[![No Dependencies](https://img.shields.io/badge/dependencies-zero-success.svg)](composer.json)
+
+<!-- Badges de Segurança -->
+[![SSL/TLS](https://img.shields.io/badge/SSL%2FTLS-verified-success.svg)](docs/SECURITY.md)
+[![Input Validation](https://img.shields.io/badge/input-validated-success.svg)](docs/SECURITY.md)
+[![XML Injection](https://img.shields.io/badge/XML%20injection-protected-success.svg)](docs/SECURITY.md)
+[![Security Hardened](https://img.shields.io/badge/security-hardened%20v1.2.0-brightgreen.svg)](CHANGELOG.md)
+
+<!-- Badges de Contribuição -->
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/thiagoedson/wscaixa/pulls)
+[![Made with PHP](https://img.shields.io/badge/made%20with-PHP-8892BF.svg)](https://php.net)
+[![GitHub Stars](https://img.shields.io/github/stars/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/network/members)
 
 Biblioteca PHP para integração com o webservice da Caixa Econômica Federal para criação, registro e consulta de boletos bancários.
 
