@@ -42,8 +42,14 @@ class WSCaixa {
 			curl_setopt( $connCURL, CURLOPT_POSTFIELDS, $this->dadosXml );
 			curl_setopt( $connCURL, CURLOPT_POST, true );
 			curl_setopt( $connCURL, CURLOPT_RETURNTRANSFER, true );
-			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, false );
-			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, false );
+
+			// SEGURANÇA: Habilitar verificação SSL
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, true );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, 2 );
+
+			// Configurar timeouts
+			curl_setopt( $connCURL, CURLOPT_TIMEOUT, 30 );
+			curl_setopt( $connCURL, CURLOPT_CONNECTTIMEOUT, 10 );
 
 			curl_setopt( $connCURL, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/xml',
@@ -55,9 +61,9 @@ class WSCaixa {
 			curl_close( $connCURL );
 
 			if ( $err ) {
-
-				print_r( json_encode( $err ) );
-				die;
+				// Log interno do erro (não expor detalhes ao usuário)
+				error_log( "Erro WSCaixa - realizarRegistro: " . $err );
+				throw new \Exception( 'Erro ao comunicar com o webservice da Caixa' );
 			}
 
 			$response  = preg_replace( "/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL );
@@ -77,24 +83,10 @@ class WSCaixa {
 
 			return $infoArray;
 
-		} catch ( Exception $e ) {
-			throw new Exception( $e->getMessage(), $e->getCode() );
-		}
-
-		if ( isset( $infoArray['EXCECAO'] ) ) {
-
-			print_r( json_encode( $infoArray ) );
-			die;
-		}
-
-		if ( $infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00' ) {
-
-			print_r( json_encode( $infoArray ) );
-			die;
-		} else {
-
-			print_r( json_encode( $infoArray ) );
-			die;
+		} catch ( \Exception $e ) {
+			// Log interno do erro
+			error_log( "Erro WSCaixa - realizarRegistro Exception: " . $e->getMessage() );
+			throw new \Exception( 'Erro ao processar requisição ao webservice da Caixa', $e->getCode() );
 		}
 	}
 
@@ -106,8 +98,14 @@ class WSCaixa {
 			curl_setopt( $connCURL, CURLOPT_POSTFIELDS, $this->dadosXml );
 			curl_setopt( $connCURL, CURLOPT_POST, true );
 			curl_setopt( $connCURL, CURLOPT_RETURNTRANSFER, true );
-			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, false );
-			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, false );
+
+			// SEGURANÇA: Habilitar verificação SSL
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, true );
+			curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, 2 );
+
+			// Configurar timeouts
+			curl_setopt( $connCURL, CURLOPT_TIMEOUT, 30 );
+			curl_setopt( $connCURL, CURLOPT_CONNECTTIMEOUT, 10 );
 
 			curl_setopt( $connCURL, CURLOPT_HTTPHEADER, array(
 				'Content-Type: application/xml',
@@ -119,9 +117,9 @@ class WSCaixa {
 			curl_close( $connCURL );
 
 			if ( $err ) {
-
-				print_r( json_encode( $err ) );
-				die;
+				// Log interno do erro (não expor detalhes ao usuário)
+				error_log( "Erro WSCaixa - consultarRegistro: " . $err );
+				throw new \Exception( 'Erro ao comunicar com o webservice da Caixa' );
 			}
 
 			$response  = preg_replace( "/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $responseCURL );
@@ -141,24 +139,10 @@ class WSCaixa {
 
 			return $infoArray;
 
-		} catch ( Exception $e ) {
-			throw new Exception( $e->getMessage(), $e->getCode() );
-		}
-
-		if ( isset( $infoArray['EXCECAO'] ) ) {
-
-			print_r( json_encode( $infoArray ) );
-			die;
-		}
-
-		if ( $infoArray['CONTROLE_NEGOCIAL']['COD_RETORNO'] == '00' ) {
-
-			print_r( json_encode( $infoArray ) );
-			die;
-		} else {
-
-			print_r( json_encode( $infoArray ) );
-			die;
+		} catch ( \Exception $e ) {
+			// Log interno do erro
+			error_log( "Erro WSCaixa - consultarRegistro Exception: " . $e->getMessage() );
+			throw new \Exception( 'Erro ao processar requisição ao webservice da Caixa', $e->getCode() );
 		}
 	}
 
@@ -167,8 +151,20 @@ class WSCaixa {
 	 *
 	 * @param $informacoes
 	 * @param null $arrDescontos
+	 * @throws \Exception
 	 */
 	private function _setConfigs( $informacoes, $arrDescontos = null, $tipo = 'INCLUI_BOLETO' ) {
+		// SEGURANÇA: Validar URL de integração
+		BoletoValidator::validarURL( $informacoes['urlIntegracao'] );
+
+		// SEGURANÇA: Validar dados de entrada (apenas para inclusão)
+		if ( $tipo == 'INCLUI_BOLETO' ) {
+			BoletoValidator::validar( $informacoes );
+		}
+
+		// SEGURANÇA: Sanitizar dados para prevenir XML injection
+		$informacoes = BoletoValidator::sanitizarDados( $informacoes );
+
 		$this->urlIntegracao = $informacoes['urlIntegracao'];
 
 		if ( $arrDescontos == null ) {

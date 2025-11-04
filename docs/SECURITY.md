@@ -16,11 +16,27 @@ Este documento aborda considerações de segurança, vulnerabilidades conhecidas
 
 ## Visão Geral de Segurança
 
-A biblioteca WSCaixa lida com informações financeiras sensíveis e deve ser utilizada com atenção especial à segurança. Esta seção documenta os riscos e as medidas necessárias para mitigá-los.
+A biblioteca WSCaixa lida com informações financeiras sensíveis e deve ser utilizada com atenção especial à segurança. Esta seção documenta os riscos e as medidas implementadas para mitigá-los.
 
 ### Nível de Risco Atual
 
-⚠️ **MÉDIO-ALTO** - A implementação atual possui vulnerabilidades que devem ser corrigidas antes de uso em produção.
+✅ **BAIXO-MÉDIO** - As vulnerabilidades críticas foram corrigidas. A implementação atual implementa as principais proteções de segurança recomendadas.
+
+### Correções de Segurança Implementadas (versão 1.2.0)
+
+**Data:** 2025-11-04
+
+✅ **Vulnerabilidades Críticas Corrigidas:**
+- Verificação SSL habilitada (previne ataques Man-in-the-Middle)
+- Exposição de informações em erros corrigida
+- Validação de entrada de dados implementada
+- Sanitização XML para prevenir injection attacks
+- Timeouts configurados para prevenir travamentos
+
+**Status das Correções:**
+- 🔴 **CRÍTICO**: 1/1 corrigido (100%)
+- 🟡 **MÉDIO**: 3/3 corrigidos (100%)
+- 🟢 **BAIXO**: 1/1 corrigido (100%)
 
 ### Dados Sensíveis Manipulados
 
@@ -34,26 +50,30 @@ A biblioteca WSCaixa lida com informações financeiras sensíveis e deve ser ut
 
 ## Vulnerabilidades Identificadas
 
-### 🔴 CRÍTICO: Verificação SSL Desabilitada
+### ✅ CORRIGIDO: Verificação SSL Desabilitada
 
-**Localização:** `lib/WSCaixa.php:44-45`
+**Localização:** `lib/WSCaixa.php` (linhas 47-48 e 103-104)
+
+**Status:** ✅ **CORRIGIDO**
+
+**Implementação:**
 
 ```php
-curl_setopt($connCURL, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($connCURL, CURLOPT_SSL_VERIFYHOST, false);
+// SEGURANÇA: Habilitar verificação SSL
+curl_setopt( $connCURL, CURLOPT_SSL_VERIFYPEER, true );
+curl_setopt( $connCURL, CURLOPT_SSL_VERIFYHOST, 2 );
+
+// Configurar timeouts
+curl_setopt( $connCURL, CURLOPT_TIMEOUT, 30 );
+curl_setopt( $connCURL, CURLOPT_CONNECTTIMEOUT, 10 );
 ```
 
-**Risco:**
-- **Man-in-the-Middle (MitM) Attacks:** Permite que atacantes interceptem a comunicação
-- **Exposição de Dados:** Dados sensíveis podem ser capturados em trânsito
-- **Falsificação de Servidor:** Impossível validar autenticidade do servidor
+**O que foi corrigido:**
+- ✅ Verificação SSL habilitada em ambos os métodos (realizarRegistro e consultarRegistro)
+- ✅ Validação de certificado do servidor ativada
+- ✅ Timeouts configurados para prevenir travamentos
 
-**Impacto:** ALTO
-- Dados financeiros expostos
-- Credenciais podem ser roubadas
-- Boletos falsos podem ser criados
-
-**Correção Recomendada:**
+**Correção Adicional Recomendada (opcional):**
 
 ```php
 // NUNCA fazer isso em produção:
@@ -89,16 +109,24 @@ curl_setopt($connCURL, CURLOPT_CAINFO, $caPath);
 
 ---
 
-### 🟡 MÉDIO: Falta de Validação de Entrada
+### ✅ CORRIGIDO: Falta de Validação de Entrada
 
-**Problema:** Dados de entrada não são validados antes do processamento.
+**Localização:** `lib/BoletoValidator.php` (novo arquivo criado)
 
-**Risco:**
-- Injection attacks (XML Injection)
-- Dados malformados podem causar erros
-- Bypass de regras de negócio
+**Status:** ✅ **CORRIGIDO**
 
-**Exemplos de Validações Necessárias:**
+**Implementação:**
+
+Foi criada a classe `BoletoValidator` que implementa:
+- ✅ Validação de CPF/CNPJ
+- ✅ Validação de Nosso Número
+- ✅ Validação de valores
+- ✅ Sanitização de dados para prevenir XML Injection
+- ✅ Validação de URL de integração
+
+A validação é aplicada automaticamente no construtor da classe WSCaixa.
+
+**Exemplos de Validações Implementadas:**
 
 ```php
 // Validar CPF
@@ -145,27 +173,33 @@ function sanitizarTexto($texto) {
 
 ---
 
-### 🟡 MÉDIO: Exposição de Informações em Erros
+### ✅ CORRIGIDO: Exposição de Informações em Erros
 
-**Localização:** `lib/WSCaixa.php:58-96`
+**Localização:** `lib/WSCaixa.php` (múltiplas ocorrências)
 
-**Problema:** Uso de `print_r()` e `die` expõe informações sensíveis.
+**Status:** ✅ **CORRIGIDO**
+
+**Implementação:**
+
+Todas as chamadas `print_r()` e `die` foram substituídas por:
+- ✅ Logging interno com `error_log()`
+- ✅ Exceções com mensagens genéricas
+- ✅ Remoção de código morto (unreachable code)
+
+**Correção Implementada:**
 
 ```php
 if ($err) {
-    print_r(json_encode($err));  // ❌ Expõe detalhes técnicos
-    die;
+    // Log interno do erro (não expor detalhes ao usuário)
+    error_log( "Erro WSCaixa - realizarRegistro: " . $err );
+    throw new \Exception( 'Erro ao comunicar com o webservice da Caixa' );
 }
 ```
 
-**Correção:**
-
-```php
-if ($err) {
-    error_log("Erro cURL WSCaixa: " . $err);  // Log interno
-    throw new Exception('Erro ao comunicar com webservice');  // Mensagem genérica
-}
-```
+**Benefícios:**
+- Erros são registrados em logs do servidor (não expostos ao usuário)
+- Mensagens genéricas previnem information disclosure
+- Uso de exceções permite tratamento adequado pelo código cliente
 
 ---
 
@@ -212,20 +246,24 @@ if (!$rateLimiter->allowRequest()) {
 
 ---
 
-### 🟢 BAIXO: Falta de Timeout Configurável
+### ✅ CORRIGIDO: Falta de Timeout Configurável
 
-**Problema:** Sem timeout explícito nas requisições cURL.
+**Localização:** `lib/WSCaixa.php` (métodos realizarRegistro e consultarRegistro)
 
-**Risco:**
-- Requisições podem travar indefinidamente
-- Consumo de recursos
+**Status:** ✅ **CORRIGIDO**
 
-**Solução:**
+**Implementação:**
 
 ```php
-curl_setopt($connCURL, CURLOPT_TIMEOUT, 30);         // Timeout total: 30s
-curl_setopt($connCURL, CURLOPT_CONNECTTIMEOUT, 10);  // Timeout de conexão: 10s
+// Configurar timeouts
+curl_setopt( $connCURL, CURLOPT_TIMEOUT, 30 );         // Timeout total: 30s
+curl_setopt( $connCURL, CURLOPT_CONNECTTIMEOUT, 10 );  // Timeout de conexão: 10s
 ```
+
+**Benefícios:**
+- ✅ Previne requisições travadas indefinidamente
+- ✅ Reduz consumo de recursos em caso de problemas de rede
+- ✅ Melhora a experiência do usuário com feedback mais rápido
 
 ---
 

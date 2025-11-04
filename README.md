@@ -1,11 +1,24 @@
 # WSCaixa
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac7f2f9d821b4569a09dae3fce38a23a)](https://www.codacy.com/manual/thiagoedson/wscaixa?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thiagoedson/wscaixa&amp;utm_campaign=Badge_Grade)
-[![Version](https://img.shields.io/badge/version-1.1.8-blue.svg)](https://github.com/cassone200/wscaixa)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/cassone200/wscaixa)
 [![PHP Version](https://img.shields.io/badge/php-%3E5.4-8892BF.svg)](https://php.net)
 [![License](https://img.shields.io/badge/license-ISC-green.svg)](LICENSE)
+[![Security](https://img.shields.io/badge/security-hardened-brightgreen.svg)](docs/SECURITY.md)
 
 Biblioteca PHP para integração com o webservice da Caixa Econômica Federal para criação, registro e consulta de boletos bancários.
+
+## 🔒 Segurança - Versão 1.2.0
+
+**Todas as vulnerabilidades críticas foram corrigidas!**
+
+✅ Verificação SSL/TLS habilitada
+✅ Validação robusta de entrada de dados
+✅ Proteção contra XML Injection
+✅ Tratamento seguro de erros
+✅ Timeouts configurados
+
+[Ver detalhes completos de segurança](docs/SECURITY.md) | [Ver changelog](CHANGELOG.md)
 
 ## 📋 Índice
 
@@ -36,6 +49,9 @@ WSCaixa é uma biblioteca PHP leve (sem dependências externas) que facilita a i
 - ✅ **Juros e Multa:** Configuração de juros e multa por atraso
 - ✅ **SOAP XML:** Construção automática de requisições SOAP
 - ✅ **Ambiente Produção/Homologação:** Suporte a ambos ambientes
+- 🔒 **Segurança Hardened:** Verificação SSL, validação de dados e proteção contra injeções
+- 🔒 **Validação Automática:** CPF, CNPJ, valores e formatos validados automaticamente
+- 🔒 **Sanitização XML:** Proteção contra XML Injection attacks
 
 ## 📦 Requisitos
 
