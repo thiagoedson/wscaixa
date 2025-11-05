@@ -8,6 +8,8 @@
 
 <!-- Badges de Versão e Compatibilidade -->
 [![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/cassone200/wscaixa)
+[![Packagist Version](https://img.shields.io/packagist/v/cassone200/wscaixa)](https://packagist.org/packages/cassone200/wscaixa)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/cassone200/wscaixa)](https://packagist.org/packages/cassone200/wscaixa)
 [![PHP Version](https://img.shields.io/badge/php-%3E5.4-8892BF.svg)](https://php.net)
 [![PHP Tested](https://img.shields.io/badge/php%20tested-5.4%20|%205.6%20|%207.x%20|%208.x-8892BF.svg)](https://php.net)
 [![Stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/thiagoedson/wscaixa)
@@ -29,9 +31,11 @@
 [![XML Injection](https://img.shields.io/badge/XML%20injection-protected-success.svg)](docs/SECURITY.md)
 [![Security Hardened](https://img.shields.io/badge/security-hardened%20v1.2.0-brightgreen.svg)](CHANGELOG.md)
 
-<!-- Badges de Contribuição -->
+<!-- Badges de Contribuição e Atividade -->
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/thiagoedson/wscaixa/pulls)
 [![Made with PHP](https://img.shields.io/badge/made%20with-PHP-8892BF.svg)](https://php.net)
+[![Last Commit](https://img.shields.io/github/last-commit/thiagoedson/wscaixa)](https://github.com/thiagoedson/wscaixa/commits)
+[![Issues](https://img.shields.io/github/issues/thiagoedson/wscaixa)](https://github.com/thiagoedson/wscaixa/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/network/members)
 
