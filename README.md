@@ -34,6 +34,7 @@
 [![Made with PHP](https://img.shields.io/badge/made%20with-PHP-8892BF.svg)](https://php.net)
 [![GitHub Stars](https://img.shields.io/github/stars/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/thiagoedson/wscaixa?style=social)](https://github.com/thiagoedson/wscaixa/network/members)
+[![Trendshift](https://trendshift.io/api/badge/repositories/9163)](https://trendshift.io/repositories/9163)
 
 Biblioteca PHP para integração com o webservice da Caixa Econômica Federal para criação, registro e consulta de boletos bancários.
 
